@@ -4,7 +4,7 @@ clear;
 clc;
 
 
-N = 12;
+N = 9;
 
 function out = logfft2(img)
     log_img = log(abs(fftshift(fft2(img)))+1);
@@ -32,7 +32,7 @@ end
 % dir selection starts at index 3 because . and .. occupy index 1,2
 
 % select a particular dir
-desired = 11;
+desired = 5;
 desired_range = 3+desired-1;
 
 % select a range of dirs
@@ -43,14 +43,23 @@ desired_range = 3+desired-1;
 outs = dir("images");
 for dir_name = outs(desired_range)'
     outs_folder = dir(sprintf("images/%s", dir_name.name));
-    fig = figure;
-    fig.WindowState = 'maximized'; 
+    % fig = figure;
+    % fig.WindowState = 'maximized'; 
 
+    med_filt = [3 3];
     apt_a = outs_folder(3);
     Ia = double(imread(sprintf("images/%s/%s", dir_name.name, apt_a.name)));
     Ia = uint8(Ia * (255.0 / 2^16));
-    Ia_histeq_then_med = medfilt2(histogram_equalization(Ia), [5 5]);
-    Ia_med_then_histeq = histogram_equalization(medfilt2(Ia, [5 5]));
+    Ia_histeq_then_med = medfilt2(histogram_equalization(Ia), med_filt);
+    Ia_med_then_histeq = histogram_equalization(medfilt2(Ia, med_filt));
+    apt_b = outs_folder(4);
+    Ib = double(imread(sprintf("images/%s/%s", dir_name.name, apt_b.name)));
+    Ib = uint8(Ib * (255.0 / 2^16));
+    Ib_histeq_then_med = medfilt2(histogram_equalization(Ib), med_filt);
+    Ib_med_then_histeq = histogram_equalization(medfilt2(Ib, med_filt));
+    % mkdir(sprintf("./enhance2_%s", dir_name.name));
+    % imwrite(Ia_histeq_then_med, sprintf("./enhance2_%s/APT-A.png", dir_name.name))
+    % imwrite(Ib_histeq_then_med, sprintf("./enhance2_%s/APT-B.png", dir_name.name))
 
     subplot(2,3,1);
     imshow(Ia);

@@ -11,12 +11,14 @@ function out = logfft2(img)
     out = uint8(scale * log_img);
 end
 
+N = 9;
+
 % select a particular dir
-desired_range = 1;
+% desired_range = 9;
 
 % select a range of dirs
-% desired = 2;
-% desired_range = 3:3+desired-1;
+desired = N;
+desired_range = 3:3+desired-1;
 
 % select all images
 % 3:end because we ignore . and ..
@@ -24,9 +26,11 @@ desired_range = 1;
 
 % https://stackoverflow.com/a/11621907/13471272
 outs = dir("images");
-for dir_name = outs(3+desired_range-1)'
+for i = desired_range
+    dir_name = outs(i);
     outs_folder = dir(sprintf("images/%s", dir_name.name));
-    figure;
+    f = figure;
+    f.WindowState = 'maximized';
 
     apt_a = outs_folder(3);
     subplot(2,2,1);
@@ -35,8 +39,27 @@ for dir_name = outs(3+desired_range-1)'
     imshow(Ia);
     title(f, 'Interpreter', 'none');
 
+    switch(i-2)
+    case 1
+        Ia_cropped = Ia(1:end-350,:);
+    case 2
+        Ia_cropped = Ia(670:end-200,:);
+    case 3
+        Ia_cropped = Ia(100:end-150,:);
+    case 4
+        Ia_cropped = Ia(250:end-190,:);
+    case 5
+        Ia_cropped = Ia(475:end-100,:);
+    case 6
+        Ia_cropped = Ia(1:end-100,:);
+    case 7
+        Ia_cropped = Ia(150:end-150,:);
+    case 8
+        Ia_cropped = Ia(250:end-370,:);
+    case 9
+        Ia_cropped = Ia(100:end-110,:);
+    end
     subplot(2,2,2);
-    Ia_cropped = Ia(150:end-300,:);
     imshow(Ia_cropped);
     title(f, 'Interpreter', 'none');
 

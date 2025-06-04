@@ -3,7 +3,7 @@
 clear;
 clc;
 
-N = 12;
+N = 9;
 
 function out = logfft2(img)
     log_img = log(abs(fftshift(fft2(img)))+1);
@@ -31,7 +31,7 @@ end
 % dir selection starts at index 3 because . and .. occupy index 1,2
 
 % select a particular dir
-desired = 11;
+desired = 9;
 desired_range = 3+desired-1;
 
 % select a range of dirs
