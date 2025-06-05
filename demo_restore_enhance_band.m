@@ -1,4 +1,4 @@
-%% Demo script
+%% Demo script for restoration, enhancement, and band ratio
 
 clear;
 clc;
@@ -193,16 +193,16 @@ imshow(dispfft2(Ia4_fft))
 title("FFT of APT-A")
 subplot(2,5,2)
 imagesc(mask1)
-title("FFT of APT-A, 250,000")
+title("threshold = 250,000")
 subplot(2,5,3)
 imagesc(mask2)
-title("FFT of APT-A, 300,000")
+title("threshold = 300,000")
 subplot(2,5,4)
 imagesc(mask3)
-title("FFT of APT-A, 350,000")
+title("threshold = 350,000")
 subplot(2,5,5)
 imagesc(mask4)
-title("FFT of APT-A, 400,000")
+title("threshold = 400,000")
 
 masked1 = Ia4_fft .* ifftshift(~mask1);
 masked2 = Ia4_fft .* ifftshift(~mask2);
@@ -241,16 +241,16 @@ imshow(dispfft2(Ia5_fft))
 title("FFT of APT-A")
 subplot(2,5,2)
 imagesc(mask1)
-title("FFT of APT-A, 250,000")
+title("threshold = 250,000")
 subplot(2,5,3)
 imagesc(mask2)
-title("FFT of APT-A, 300,000")
+title("threshold = 300,000")
 subplot(2,5,4)
 imagesc(mask3)
-title("FFT of APT-A, 350,000")
+title("threshold = 350,000")
 subplot(2,5,5)
 imagesc(mask4)
-title("FFT of APT-A, 400,000")
+title("threshold = 400,000")
 
 masked1 = Ia5_fft .* ifftshift(~mask1);
 masked2 = Ia5_fft .* ifftshift(~mask2);

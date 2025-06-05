@@ -119,12 +119,12 @@ for dir_name = outs(desired_range)'
             end
         end
     end
-    figure;
-    colormap("gray")
-    subplot(1,2,1)
-    imagesc(dispfft2(new_Ia_fft));
-    subplot(1,2,2)
-    imshow(real(ifft2(ifftshift(new_Ia_fft))))
+    % figure;
+    % colormap("gray")
+    % subplot(1,2,1)
+    % imagesc(dispfft2(new_Ia_fft));
+    % subplot(1,2,2)
+    % imshow(real(ifft2(ifftshift(new_Ia_fft))))
 
     % figure;
     % colormap('gray')
